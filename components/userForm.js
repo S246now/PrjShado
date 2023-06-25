@@ -3,6 +3,7 @@ import styles from '../styles/Home.module.css'
 import Link from 'next/link';
 import axios from 'axios';
 import classes from '../styles/extra.module.css'
+import { useRouter } from 'next/router';
 
 function AddUser() {
 
@@ -10,6 +11,7 @@ function AddUser() {
     const [carreerVisible, setCarreerVisible] = useState(false);
     const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
     const [linkVisible, setLinkVisible] = useState(false);
+    const router = useRouter();
 
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
@@ -19,40 +21,40 @@ function AddUser() {
     const ageInputRef = useRef();
     const carreerInputRef = useRef();
 
-    function sendData(event) {
+    function sendDataAndContinue(event) {
         event.preventDefault();
+
         const ageSelected = ageInputRef.current.value;
         const carreerSelected = carreerInputRef.current?.value || '';
-        const reqBody = { edad: ageSelected, estudiante: selectedOption, carrera: carreerSelected }; //javascript object
-        setSubmitButtonDisabled(true);
-        setLinkVisible(true);
-        
-        fetch('/api/saveUser', { 
-            method: 'POST', //send the POST HTTP REQUEST
-            body: JSON.stringify(reqBody), //lo envío como JSON
-            headers: { 
-              'Content-Type': 'application/json'
-            },
-        })
-            .then((response) => response.json())
-            .then((data) => console.log(data))
-            .finally(() => {
-                setSubmitButtonDisabled(true);
-                setLinkVisible(true);
-            });
 
-        const body = JSON.stringify(reqBody);
-        const response = axios.post('/api/login', body) //POST token al backend 
-        console.log(response)
+        const reqBody = { edad: ageSelected, estudiante: selectedOption, carrera: carreerSelected }; //javascript object
+
+        /* setSubmitButtonDisabled(true);
+        setLinkVisible(true); */
+
+        // Pass userData as a prop when navigating to the QuestionPage
+        const path = '/questions/factor1/question1';
+        router.push({
+            pathname: path,
+            query: { userData: JSON.stringify(reqBody) }
+        });
+        console.log(reqBody);
     }
+
+        /* const body = JSON.stringify(reqBody);
+        const response = axios.post('/api/login', body) //POST token al backend 
+        console.log(response) 
+    }*/
+
+        
 
     return (
         <div className={classes.container}>
-            <div>
-            <form onSubmit={sendData}>
+            <div >
+            <form >
                 <div>
                     <label htmlFor='edadinput'>¿Qué edad tienes? </label>
-                    <input type="text" name="Age" id='edadInput' ref={ageInputRef} placeholder="Ingresa tu edad" required autoFocus />
+                    <input className={classes.input} type="text" name="Age" id='edadInput' ref={ageInputRef} placeholder="Ingresa tu edad" required autoFocus />
                 </div>
                 
                 <br />
@@ -69,12 +71,12 @@ function AddUser() {
                 {carreerVisible &&
                     <div>
                         <label>¿En qué carrera estudias? </label>
-                        <input type="text" name="Carreer" ref={carreerInputRef} placeholder="Ingresa tu carrera" required />
+                        <input className={classes.input} type="text" name="Carreer" ref={carreerInputRef} placeholder="Ingresa tu carrera" required />
                     </div>
                 }
 
                 <br />
-                <input type="submit" name="Send" onClick={sendData} disabled={submitButtonDisabled}></input>
+                <input className={classes.btn} type="submit" name="Send" onClick={sendDataAndContinue} disabled={!selectedOption}></input>
             </form>
             <br/>
            {/*  {linkVisible && (

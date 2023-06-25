@@ -17,15 +17,10 @@ export default function Home() {
         <h1> Bienvenido! </h1>
 
         <h3>Test - Memoria a corto plazo</h3>
-
-        <p className={styles.description}>
-
-        </p>
-
-        <Instructions/>
-        
-        <AddUser/>
-
+        <Instructions />
+        <div>
+          <AddUser />
+        </div>
       </main>
 
       <footer className={styles.footer}>

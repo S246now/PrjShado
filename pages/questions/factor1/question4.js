@@ -1,18 +1,18 @@
-import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import classes from '../../../styles/extra.module.css';
 
-function QuestionPage() {
+function QuestionPage4() {
     const [selectedOption, setSelectedOption] = useState('');
     const [timeRemaining, setTimeRemaining] = useState(60); // Tiempo restante en segundos
-    const router = useRouter();
 
     const handleOptionChange = (event) => {
         //guarda el valor seleccionado en 'selectedOption'
-        setSelectedOption(event.target.value);
+        const value = event.target.value;
+        setSelectedOption(value || "");
     };
 
+    const router = useRouter();
     const timerRef = useRef(null);
 
     useEffect(() => {
@@ -30,43 +30,33 @@ function QuestionPage() {
     useEffect(() => {
         if (timeRemaining === 0) {
             // Redireccionar a /questions/question2 si han pasado 30 segundos
-            const path = "/questions/factor1/question2";
+            const path = "/questions/factor1/question5";
             router.push(path);
-            /* const newUser = {
-                age: user.age,
-                student: user.student,
-                carreer: user.carreer,
-                question1: selectedOption ?? '',
-            };
-            console.log(newUser); */
         }
     }, [timeRemaining]);
 
     //recupero datos de anterior página (userForm)
     const { userData } = router.query;
     function sendDataAndContinue(event) {
-        event.preventDefault();
-
         try {
             const user = JSON.parse(userData);
             // Continuar con la lógica después de analizar los datos exitosamente
 
             clearInterval(timerRef.current); // Cancelar el temporizador al hacer clic en el botón
-            
-            console.log(user);//sí recupera los datos, técnicamente, ya no necesito el token...
-            /* const response = axios.get('/api/login')
-            .then((response) => {
-                console.log(response);
-            }) //token */
+            event.preventDefault();
+
             const newUser = {
                 age: user.age,
                 student: user.student,
                 carreer: user.carreer,
-                question1: selectedOption ?? '',
+                question1: user.question1,
+                question2: user.question2,
+                question3: user.question3,
+                question4: selectedOption ?? '',
             };
 
             // Pass userData as a prop when navigating to the QuestionPage
-            const path = '/questions/factor1/question2';
+            const path = '/questions/factor1/question5';
             router.push({
                 pathname: path,
                 query: { userData: JSON.stringify(newUser) }
@@ -81,6 +71,7 @@ function QuestionPage() {
         }
     }
 
+
     const formatTime = (seconds) => {
         const minutes = Math.floor(seconds / 60);
         const remainingSeconds = seconds % 60;
@@ -90,19 +81,18 @@ function QuestionPage() {
             .padStart(2, "0")}`;
     };
 
-
     return (
         <div className={classes.container}>
             <div className={classes.containerHijo}>
-                <h1>Factor 1 - Primera Pregunta</h1>
+                <h1>Factor 1 - Cuarta Pregunta</h1>
                 <h4>¿Puede recordar la secuencia que escuchará a continuación? </h4>
-                <h4>Por favor, escuche el sonido guía e identifique cuál de las 4 opciones es la misma</h4>
+                <h4>Escuche el sonido guía e identifique cuál de las 4 opciones es la misma</h4>
                 <p>Tiempo restante: {formatTime(timeRemaining)}</p>
                 <h2>Sonido Guía:</h2>
                 <br />
                 <div>
                     <audio
-                        src="/audio/factor1-1.mp3"
+                        src="/audio/factor1-4.mp3"
                         type="audio/mp3"
                         controls
                     >
@@ -121,8 +111,7 @@ function QuestionPage() {
                         onChange={handleOptionChange}
                     />
                     <label htmlFor="option1">
-                        {/* Opción 1 */}
-                        <audio src="/audio/factor1-1a.mp3" controls />
+                        <audio src="/audio/factor1-4a.mp3" controls />
                     </label>
                 </div>
 
@@ -136,7 +125,7 @@ function QuestionPage() {
                         onChange={handleOptionChange}
                     />
                     <label htmlFor="option2">
-                        <audio src="/audio/factor1-1b.mp3" controls />
+                        <audio src="/audio/factor1-4b.mp3" controls />
                     </label>
                 </div>
 
@@ -150,7 +139,7 @@ function QuestionPage() {
                         onChange={handleOptionChange}
                     />
                     <label htmlFor="option3">
-                        <audio src="/audio/factor1-1c.mp3" controls />
+                        <audio src="/audio/factor1-4c.mp3" controls />
                     </label>
                 </div>
 
@@ -164,7 +153,7 @@ function QuestionPage() {
                         onChange={handleOptionChange}
                     />
                     <label htmlFor="option4">
-                        <audio src="/audio/factor1-1d.mp3" controls />
+                        <audio src="/audio/factor1-4d.mp3" controls />
                     </label>
                 </div>
 
@@ -177,4 +166,4 @@ function QuestionPage() {
     )
 }
 
-export default QuestionPage;
+export default QuestionPage4;

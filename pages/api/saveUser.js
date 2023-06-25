@@ -40,7 +40,21 @@ function SaveUser(req, res) {
             esEstudiante: student,
             carrera: carreer,
             pregunta1: question1,
-            pregunta2: 
+            pregunta2: question2,
+            pregunta3: question3,
+            pregunta4: question4,
+            pregunta5: question5,
+            pregunta6: question6,
+            pregunta7: question7,
+            pregunta8: question8,
+            pregunta9: question9,
+            pregunta10: question10,
+            pregunta11: question11,
+            pregunta12: question12,
+            pregunta13: question13,
+            pregunta14: question14,
+            pregunta15: question15,
+            puntaje: score,
         };
         const filePath = buildPath();
         const data = extractData(filePath);
