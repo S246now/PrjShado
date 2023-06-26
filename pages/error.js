@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import classes from '../styles/extra.module.css'
 
 function ErrorPage() {
@@ -8,7 +9,7 @@ function ErrorPage() {
                 <p>Te recordamos que es necesario seleccionar una opción en cada pregunta</p>
                 <p>caso contrario, tu progreso será anulado y deberás comenzar de nuevo.</p>
                 <br />
-                <button className={classes.btn} >Volver al Inicio</button>
+                <Link className={classes.btn} href='/' >Volver al Inicio</Link>
             </div>
         </div>
     )

@@ -14,7 +14,7 @@ function Instructions() {
             <br/>
             <h3>Factor 1 - Capacidad de la memoria a corto plazo</h3>
             <ul>
-                <li>Tendrás 60 segundas para responder cada pregunta</li>
+                <li>Tendrás 60 segundos para responder cada pregunta</li>
                 <li>¿Puedes recordar la secuencia?</li>
                 <li>Deberás escuchar el sonido guía e identificar cuál de entre las 4 opciones es la misma</li>
             </ul>
@@ -22,7 +22,7 @@ function Instructions() {
             <br/>
             <h3>Factor 2 - Duración de la memoria a corto plazo</h3>
             <ul>
-                <li>Tendrás 50 segundas para responder cada pregunta</li>
+                <li>Tendrás 50 segundos para responder cada pregunta</li>
                 <li>Deberás escuchar la secuencia musical e identificar cuál de entre las 4 opciones es la misma</li>
                 <li>Presta mucha atención al sonido guía</li>
             </ul>
@@ -30,7 +30,7 @@ function Instructions() {
             <br/>
             <h3>Factor 3 - Concentración</h3>
             <ul>
-                <li>Tendrás 60 segundas para responder cada pregunta</li>
+                <li>Tendrás 60 segundos para responder cada pregunta</li>
                 <li>Escucha la siguiente secuencia musical y marca cuál es la respuesta correcta</li>
                 <li>¡Pon a prueba tu concentración! </li>
             </ul>
