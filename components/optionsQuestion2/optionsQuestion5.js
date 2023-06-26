@@ -94,7 +94,7 @@ function OptionsQ5() {
                     onChange={handleOptionChange}
                 />
                 <label htmlFor="option3">
-                    <audio src="/audio/factor2-5c.mp3" type="audio/mp3" controls />
+                    <audio src="/audio/factor2-5.mp3" type="audio/mp3" controls />
                 </label>
             </div>
 
