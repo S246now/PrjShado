@@ -11,9 +11,7 @@ function FinalPage() {
 
     //recupero datos de anterior página (userForm)
     const { userData } = router.query;
-    const user = JSON.parse(userData);
-    // Continuar con la lógica después de analizar los datos exitosamente
-
+    const user = userData ? JSON.parse(userData) : null;
 
     //Cálculo de puntajes:
     function Score() {

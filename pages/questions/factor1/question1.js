@@ -62,7 +62,7 @@ function QuestionPage() {
                 age: user.age,
                 student: user.student,
                 carreer: user.carreer,
-                question1: selectedOption ?? '',
+                question1: selectedOption || '',
             };
 
             // Pass userData as a prop when navigating to the QuestionPage

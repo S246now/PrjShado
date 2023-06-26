@@ -69,10 +69,10 @@ function QuestionPage5() {
 
             // Pass userData as a prop when navigating to the QuestionPage
             const path = '/final';
-            router.push({
-                pathname: path,
+            router.push(`/final?userData=${JSON.stringify(newUser)}`);
+                /* pathname: path,
                 query: { userData: JSON.stringify(newUser) }
-            });
+            }); */
             console.log(newUser);
 
 
