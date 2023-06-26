@@ -55,7 +55,7 @@ function QuestionPage1() {
                 <br />
                 <div>
                     <audio
-                        src="/audio/factor2-1.mp3"
+                        src="/audio/factor2-1d.m4a"
                         type="audio/mp3"
                         controls={audioEnabled}
                         onEnded={handleAudioEnded}

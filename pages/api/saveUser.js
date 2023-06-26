@@ -1,6 +1,7 @@
 //POST req into json file
 import fs from 'fs';
 import path from "path";
+import { MongoClient } from 'mongodb';
 
 export function buildPath() {
     return path.join(process.cwd(), 'data', 'userData.json');
@@ -11,7 +12,7 @@ export function extractData(filePath) {
     return data;
 }
 
-function SaveUser(req, res) {
+async function SaveUser(req, res) {
     if (req.method === 'POST') {
         // extract de info
         const age = req.body.age;
@@ -34,7 +35,7 @@ function SaveUser(req, res) {
         const question15 = req.body.question15;
         const score = req.body.score;
 
-        // create user object
+        //javascript object
         const newUser = {
             edad: age,
             esEstudiante: student,
@@ -56,6 +57,17 @@ function SaveUser(req, res) {
             pregunta15: question15,
             puntaje: score,
         };
+
+            //storing in a database: Mongodb
+            const client = await MongoClient.connect(
+                'mongodb+srv://crud:crud123@web.gq8l24z.mongodb.net/?retryWrites=true&w=majority'
+            );
+            const db = client.db('shado');//getting access to the database
+            //access to a collection(table) and queries as 'isertOne'
+            await db.collection('data').insertOne(newUser);
+            client.close();
+            res.status(201).json({ message: 'Signed up' });
+
         const filePath = buildPath();
         const data = extractData(filePath);
         data.push(newUser); //interact with the array pushing el nuevo user
