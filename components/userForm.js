@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react';
 import styles from '../styles/Home.module.css'
 import Link from 'next/link';
-import axios from 'axios';
 import classes from '../styles/extra.module.css'
 import { useRouter } from 'next/router';
 
@@ -27,7 +26,7 @@ function AddUser() {
         const ageSelected = ageInputRef.current.value;
         const carreerSelected = carreerInputRef.current?.value || '';
 
-        const reqBody = { edad: ageSelected, estudiante: selectedOption, carrera: carreerSelected }; //javascript object
+        const reqBody = { age: ageSelected, student: selectedOption, carreer: carreerSelected }; //javascript object
 
         /* setSubmitButtonDisabled(true);
         setLinkVisible(true); */
@@ -49,7 +48,7 @@ function AddUser() {
         
 
     return (
-        <div className={classes.container}>
+        <div >
             <div >
             <form >
                 <div>

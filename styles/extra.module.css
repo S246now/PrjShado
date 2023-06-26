@@ -38,3 +38,9 @@
   left: 50%;
   transform: translate(-330px, 10px);
 }
+
+.form{
+  background-color: #d49765;
+  border-radius: 20px;
+  padding: 20px 60px;
+}

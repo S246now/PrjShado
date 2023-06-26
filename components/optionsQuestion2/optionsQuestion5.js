@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import classes from '../../styles/extra.module.css'
 
-function OptionsQ3() {
+function OptionsQ5() {
 
     const [selectedOption, setSelectedOption] = useState('');
     const router = useRouter();
@@ -33,11 +33,13 @@ function OptionsQ3() {
                 question5: user.question5,
                 question6: user.question6,
                 question7: user.question7,
-                question8: selectedOption ?? '',
+                question8: user.question8,
+                question9: user.question9,
+                question10: selectedOption ?? '',
             };
 
             // Pass userData as a prop when navigating to the QuestionPage
-            const path = '/questions/factor2/question4';
+            const path = '/questions/factor3/question1';
             router.push({
                 pathname: path,
                 query: { userData: JSON.stringify(newUser) }
@@ -64,7 +66,7 @@ function OptionsQ3() {
                 />
                 <label htmlFor="option1">
                     {/* Opción 1 */}
-                    <audio src="/audio/factor2-3a.mp3" type="audio/mp3" controls />
+                    <audio src="/audio/factor2-5a.mp3" type="audio/mp3" controls />
                 </label>
             </div>
 
@@ -78,7 +80,7 @@ function OptionsQ3() {
                     onChange={handleOptionChange}
                 />
                 <label htmlFor="option2">
-                    <audio src="/audio/factor2-3b.mp3" type="audio/mp3" controls />
+                    <audio src="/audio/factor2-5b.mp3" type="audio/mp3" controls />
                 </label>
             </div>
 
@@ -92,7 +94,7 @@ function OptionsQ3() {
                     onChange={handleOptionChange}
                 />
                 <label htmlFor="option3">
-                    <audio src="/audio/factor2-3c.mp3" type="audio/mp3" controls />
+                    <audio src="/audio/factor2-5c.mp3" type="audio/mp3" controls />
                 </label>
             </div>
 
@@ -106,7 +108,7 @@ function OptionsQ3() {
                     onChange={handleOptionChange}
                 />
                 <label htmlFor="option4">
-                    <audio src="/audio/factor2-3d.mp3" controls />
+                    <audio src="/audio/factor2-5d.mp3" controls />
                 </label>
             </div>
 
@@ -116,4 +118,4 @@ function OptionsQ3() {
     )
 }
 
-export default OptionsQ3;
+export default OptionsQ5;

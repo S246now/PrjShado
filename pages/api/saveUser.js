@@ -14,9 +14,9 @@ export function extractData(filePath) {
 function SaveUser(req, res) {
     if (req.method === 'POST') {
         // extract de info
-        const age = req.body.edad;
-        const student = req.body.estudiante;
-        const carreer = req.body.carrera;
+        const age = req.body.age;
+        const student = req.body.student;
+        const carreer = req.body.carreer;
         const question1 = req.body.question1;
         const question2 = req.body.question2;
         const question3 = req.body.question3;

@@ -159,8 +159,6 @@ function QuestionPage4() {
 
                 <br />
                 <button className={classes.btn} onClick={sendDataAndContinue} disabled={!selectedOption}>Continuar</button>
-
-                {selectedOption && <p>Opción seleccionada: {selectedOption}</p>}
             </div>
         </div>
     )

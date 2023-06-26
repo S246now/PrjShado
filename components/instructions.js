@@ -3,11 +3,12 @@ function Instructions() {
         <div>
             <h2>Instrucciones Generales</h2>
             <ul>
-                <li>Se recomienda escoger una opción en cada pregunta, caso contrario, tu progreso será anulado</li>
+                <li>Se recomienda escoger una opción en cada pregunta, caso contrario, deberás comenzar de nuevo</li>
                 <li>En este cuestionario se evalúan tres factores sobre la memoria acorto plazo</li>
                 <li>Hay un total de 15 preguntas</li>
                 <li>Recuerda usar audífonos para una mejor experiencia</li>
                 <li>Revisa que el volumen del sonido de tu dispositivo esté en 50</li>
+                <li>¡El tiempo corre!</li>
             </ul>
 
             <br/>

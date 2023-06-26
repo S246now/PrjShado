@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import classes from '../../../styles/extra.module.css';
-import OptionsQ3 from "../../../components/optionsQuestion2/optionsQuestion3";
+import OptionsQ4 from "../../../components/optionsQuestion2/optionsQuestion4";
 
-function QuestionPage3() {
+function QuestionPage4() {
     const [timeRemaining, setTimeRemaining] = useState(50); // Tiempo restante en segundos
     const router = useRouter();
     const timerRef = useRef(null);
@@ -24,7 +24,7 @@ function QuestionPage3() {
     useEffect(() => {
         if (timeRemaining === 0) {
             // Redireccionar a /questions/question2 si han pasado 30 segundos
-            const path = "/questions/factor2/question4";
+            const path = "/questions/factor2/question5";
             router.push(path);
         }
     }, [timeRemaining]);
@@ -46,14 +46,14 @@ function QuestionPage3() {
     return (
         <div className={classes.container}>
             <div className={classes.containerHijo}>
-                <h1>Factor 2 - Tercera Pregunta</h1>
-                <h4>Escuche el sonido guía e identifique cuál de las 4 opciones es la misma</h4>
+                <h1>Factor 2 - Cuarta Pregunta</h1>
+                <h4>Por favor, escuche el sonido guía e identifique cuál de las 4 opciones es la misma</h4>
                 <p>Tiempo restante: {formatTime(timeRemaining)}</p>
                 <h2>Sonido Guía:</h2>
                 <br />
                 <div>
                     <audio
-                        src="/audio/factor2-3.mp3"
+                        src="/audio/factor2-4.mp3"
                         type="audio/mp3"
                         controls
                         onEnded={handleAudioEnded}
@@ -63,10 +63,10 @@ function QuestionPage3() {
                 </div>
                 <br />
                 {/* Opciones */}
-                {audioEnded && <OptionsQ3 />}
+                {audioEnded && <OptionsQ4 />}
             </div>
         </div>
     )
 }
 
-export default QuestionPage3;
+export default QuestionPage4;

@@ -1,19 +1,19 @@
 //dal puntaje
 //excel(?) no hay control de usuarios
 //se elimina el token
-
 import { useRouter } from "next/router"
-import axios from 'axios';
 import { useState } from "react";
 import classes from '../styles/extra.module.css'
 
 function FinalPage() {
-
+    const [message, setMessage] = useState("");
     const router = useRouter();
+
     //recupero datos de anterior página (userForm)
     const { userData } = router.query;
     const user = JSON.parse(userData);
-    const [message, setMessage] = useState("");
+    // Continuar con la lógica después de analizar los datos exitosamente
+
 
     //Cálculo de puntajes:
     function Score() {
@@ -72,19 +72,26 @@ function FinalPage() {
 
     function showMessage() {
         const totalPuntos = Score();
+        
         let message = '';
         //Enviar mensaje
         if (totalPuntos > -1 && totalPuntos < 11) {
             message = <div>
-                <h2>Lo hiciste bien, has obtenido {totalPuntos} puntos</h2>
-                <p>pero quizá debas comer más sardina</p>
+                <h2>Lo hiciste bien, has obtenido {totalPuntos} /33 puntos</h2>
+                <h4>Quizá debas comer más sardina...</h4>
             </div>;
         }
         if (totalPuntos > 10 && totalPuntos < 16) {
-            message = <h2>Felicidades!, has obtenido {totalPuntos} puntos</h2>;
+            message = <div>
+                <h2>Buen Trabajo!, has obtenido {totalPuntos} /33 puntos</h2>
+                <h4>Sigue así!</h4>
+            </div>;
         }
-        if (totalPuntos > 15 && totalPuntos < 30) {
-            message = <h2>Buen Trabajo!, has obtenido {totalPuntos} puntos</h2>;
+        if (totalPuntos > 15 && totalPuntos < 34) {
+            message = <div>
+                <h2>Felicidades!, has obtenido {totalPuntos} /33 puntos</h2>
+                <h4>Envidio tu memoria... </h4>
+            </div>;
         }
         setMessage(message);
     }
@@ -94,6 +101,8 @@ function FinalPage() {
 
     function SendData() {
         const totalPuntos = Score();
+        console.log(totalPuntos);
+
         const reqBody = {
             age: user.age,
             student: user.student,
@@ -139,7 +148,7 @@ function FinalPage() {
             console.log(error)
             router.push('/')
         }
-
+    
     } */
 
     return (
