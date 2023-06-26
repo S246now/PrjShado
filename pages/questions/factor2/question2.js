@@ -8,6 +8,7 @@ function QuestionPage2() {
     const router = useRouter();
     const timerRef = useRef(null);
     const [audioEnded, setAudioEnded] = useState(false);
+    const [audioEnabled, setAudioEnabled] = useState(true);
 
     useEffect(() => {
         // Iniciar el temporizador al cargar la página
@@ -31,6 +32,7 @@ function QuestionPage2() {
 
     const handleAudioEnded = () => {
         setAudioEnded(true);
+        setAudioEnabled(false);// Deshabilitar el control de audio al finalizar la reproducción
       };
 
 
@@ -55,7 +57,7 @@ function QuestionPage2() {
                     <audio
                         src="/audio/factor2-2.m4a"
                         type="audio/mp3"
-                        controls
+                        controls={audioEnabled}
                         onEnded={handleAudioEnded}
                     >
                         Tu navegador no soporta el elemento de audio.

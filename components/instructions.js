@@ -16,6 +16,7 @@ function Instructions() {
             <ul>
                 <li>Tendrás 60 segundos para responder cada pregunta</li>
                 <li>¿Puedes recordar la secuencia?</li>
+                <li>Presta mucha atención al sonido guía, solo podrás escucharlo una vez</li>
                 <li>Deberás escuchar el sonido guía e identificar cuál de entre las 4 opciones es la misma</li>
             </ul>
 
@@ -23,8 +24,9 @@ function Instructions() {
             <h3>Factor 2 - Duración de la memoria a corto plazo</h3>
             <ul>
                 <li>Tendrás 50 segundos para responder cada pregunta</li>
-                <li>Deberás escuchar la secuencia musical e identificar cuál de entre las 4 opciones es la misma</li>
-                <li>Presta mucha atención al sonido guía</li>
+                <li>Presta mucha atención al sonido guía, solo podrás escucharlo una vez</li>
+                <li>Una vez que escuches la secuencia musical, las opciones aparecerán</li>
+                <li>Identifica cuál de las opciones es la misma secuencia</li>
             </ul>
 
             <br/>

@@ -7,6 +7,7 @@ function QuestionPage4() {
     const [timeRemaining, setTimeRemaining] = useState(50); // Tiempo restante en segundos
     const router = useRouter();
     const timerRef = useRef(null);
+    const [audioEnabled, setAudioEnabled] = useState(true);
     const [audioEnded, setAudioEnded] = useState(false);
 
     useEffect(() => {
@@ -31,6 +32,7 @@ function QuestionPage4() {
 
     const handleAudioEnded = () => {
         setAudioEnded(true);
+        setAudioEnabled(false);// Deshabilitar el control de audio al finalizar la reproducción
       };
 
 
@@ -55,7 +57,7 @@ function QuestionPage4() {
                     <audio
                         src="/audio/factor2-4.mp3"
                         type="audio/mp3"
-                        controls
+                        controls={audioEnabled}
                         onEnded={handleAudioEnded}
                     >
                         Tu navegador no soporta el elemento de audio.

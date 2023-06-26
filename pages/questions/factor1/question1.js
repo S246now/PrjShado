@@ -7,6 +7,7 @@ function QuestionPage() {
     const [selectedOption, setSelectedOption] = useState('');
     const [timeRemaining, setTimeRemaining] = useState(60); // Tiempo restante en segundos
     const router = useRouter();
+    const [audioEnabled, setAudioEnabled] = useState(true);
 
     const handleOptionChange = (event) => {
         //guarda el valor seleccionado en 'selectedOption'
@@ -42,6 +43,11 @@ function QuestionPage() {
         }
     }, [timeRemaining]);
 
+    const handleAudioEnabled = () => {
+        // Deshabilitar el control de audio al finalizar la reproducción
+        setAudioEnabled(false);
+    };
+
     //recupero datos de anterior página (userForm)
     const { userData } = router.query;
     function sendDataAndContinue(event) {
@@ -52,7 +58,7 @@ function QuestionPage() {
             // Continuar con la lógica después de analizar los datos exitosamente
 
             clearInterval(timerRef.current); // Cancelar el temporizador al hacer clic en el botón
-            
+
             console.log(user);//sí recupera los datos, técnicamente, ya no necesito el token...
             /* const response = axios.get('/api/login')
             .then((response) => {
@@ -104,7 +110,8 @@ function QuestionPage() {
                     <audio
                         src="/audio/factor1-1.mp3"
                         type="audio/mp3"
-                        controls
+                        controls={audioEnabled}
+                        onEnded={handleAudioEnabled}
                     >
                         Tu navegador no soporta el elemento de audio.
                     </audio>

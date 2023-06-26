@@ -5,15 +5,15 @@ import classes from '../../../styles/extra.module.css';
 function QuestionPage2() {
     const [selectedOption, setSelectedOption] = useState('');
     const [timeRemaining, setTimeRemaining] = useState(60); // Tiempo restante en segundos
+    const router = useRouter();
+    const timerRef = useRef(null);
+    const [audioEnabled, setAudioEnabled] = useState(true);
 
     const handleOptionChange = (event) => {
         //guarda el valor seleccionado en 'selectedOption'
         const value = event.target.value;
         setSelectedOption(value || "");
     };
-
-    const router = useRouter();
-    const timerRef = useRef(null);
 
     useEffect(() => {
         // Iniciar el temporizador al cargar la página
@@ -34,6 +34,11 @@ function QuestionPage2() {
             router.push(path);
         }
     }, [timeRemaining]);
+
+    const handleAudioEnabled = () => {
+        // Deshabilitar el control de audio al finalizar la reproducción
+        setAudioEnabled(false);
+    };
 
     //recupero datos de anterior página (userForm)
     const { userData } = router.query;
@@ -92,7 +97,8 @@ function QuestionPage2() {
                     <audio
                         src="/audio/factor1-2.mp3"
                         type="audio/mp3"
-                        controls
+                        controls={audioEnabled}
+                        onEnded={handleAudioEnabled}
                     >
                         Tu navegador no soporta el elemento de audio.
                     </audio>
