@@ -8,6 +8,8 @@ function QuestionPage() {
     const [timeRemaining, setTimeRemaining] = useState(60); // Tiempo restante en segundos
     const router = useRouter();
     const [audioEnabled, setAudioEnabled] = useState(true);
+    //recupero datos de anterior página (userForm)
+    const { userData } = router.query;
 
     const handleOptionChange = (event) => {
         //guarda el valor seleccionado en 'selectedOption'
@@ -32,14 +34,21 @@ function QuestionPage() {
         if (timeRemaining === 0) {
             // Redireccionar a /questions/question2 si han pasado 30 segundos
             const path = "/questions/factor1/question2";
-            router.push(path);
-            /* const newUser = {
+            //router.push(path);
+            //
+            const user = JSON.parse(userData);
+            const newUser = {
                 age: user.age,
                 student: user.student,
                 carreer: user.carreer,
-                question1: selectedOption ?? '',
+                question1: selectedOption || '',
             };
-            console.log(newUser); */
+            // Pass userData as a prop when navigating to the QuestionPage
+            router.push({
+                pathname: path,
+                query: { userData: JSON.stringify(newUser) }
+            });
+            //console.log(newUser);
         }
     }, [timeRemaining]);
 
@@ -49,7 +58,7 @@ function QuestionPage() {
     };
 
     //recupero datos de anterior página (userForm)
-    const { userData } = router.query;
+    //const { userData } = router.query;
     function sendDataAndContinue(event) {
         event.preventDefault();
 

@@ -8,6 +8,8 @@ function QuestionPage4() {
     const router = useRouter();
     const timerRef = useRef(null);
     const [audioEnabled, setAudioEnabled] = useState(true);
+    //recupero datos de anterior página (userForm)
+    const { userData } = router.query;
 
     const handleOptionChange = (event) => {
         //guarda el valor seleccionado en 'selectedOption'
@@ -31,7 +33,24 @@ function QuestionPage4() {
         if (timeRemaining === 0) {
             // Redireccionar a /questions/question2 si han pasado 30 segundos
             const path = "/questions/factor1/question5";
-            router.push(path);
+            //router.push(path);
+            //
+            const user = JSON.parse(userData);
+            const newUser = {
+                age: user.age,
+                student: user.student,
+                carreer: user.carreer,
+                question1: user.question1,
+                question2: user.question2,
+                question3: user.question3,
+                question4: selectedOption ?? '',
+            };
+            // Pass userData as a prop when navigating to the QuestionPage
+            router.push({
+                pathname: path,
+                query: { userData: JSON.stringify(newUser) }
+            });
+            console.log(newUser);
         }
     }, [timeRemaining]);
 
@@ -40,8 +59,7 @@ function QuestionPage4() {
         setAudioEnabled(false);
     };
 
-    //recupero datos de anterior página (userForm)
-    const { userData } = router.query;
+    
     function sendDataAndContinue(event) {
         try {
             const user = JSON.parse(userData);

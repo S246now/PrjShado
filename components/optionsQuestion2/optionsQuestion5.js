@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import classes from '../../styles/extra.module.css'
 
-function OptionsQ5() {
+function OptionsQ5({ onOptionSelected }) {
 
     const [selectedOption, setSelectedOption] = useState('');
     const router = useRouter();
@@ -11,6 +11,8 @@ function OptionsQ5() {
     const handleOptionChange = (event) => {
         //guarda el valor seleccionado en 'selectedOption'
         setSelectedOption(event.target.value);
+        
+        onOptionSelected(event.target.value);
     };
 
     //recupero datos de anterior página (userForm)
@@ -44,7 +46,7 @@ function OptionsQ5() {
                 pathname: path,
                 query: { userData: JSON.stringify(newUser) }
             });
-            console.log(newUser);
+            //console.log(newUser);
         } catch (error) {
             console.error('Error al analizar los datos del usuario:', error);
             // Redireccionar a otra página en caso de error

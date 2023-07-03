@@ -9,6 +9,9 @@ function QuestionPage4() {
     const timerRef = useRef(null);
     const [audioEnabled, setAudioEnabled] = useState(true);
     const [audioEnded, setAudioEnded] = useState(false);
+    const { userData } = router.query;
+    const [newUser, setNewUser] = useState(null); // Variable de estado para almacenar los datos del nuevo usuario
+    const [selectedOption, setSelectedOption] = useState();
 
     useEffect(() => {
         // Iniciar el temporizador al cargar la página
@@ -23,10 +26,52 @@ function QuestionPage4() {
     }, []);
 
     useEffect(() => {
+        // Obtener los datos del usuario desde la query de la URL
+        const { userData } = router.query;
+
+        if (userData) {
+            try {
+                const parsedUser = JSON.parse(userData);
+                setNewUser(parsedUser);
+            } catch (error) {
+                console.error('Error al analizar los datos del usuario:', error);
+                // Redireccionar a otra página en caso de error
+                router.push('/error');
+            }
+        }
+    }, [router.query]);
+
+    const handleOptionSelected = (option) => {
+        setSelectedOption(option);
+    };
+
+    useEffect(() => {
         if (timeRemaining === 0) {
             // Redireccionar a /questions/question2 si han pasado 30 segundos
             const path = "/questions/factor2/question5";
-            router.push(path);
+            //router.push(path);
+            //
+            const user = JSON.parse(userData);
+            const newUser = {
+                age: user.age,
+                student: user.student,
+                carreer: user.carreer,
+                question1: user.question1,
+                question2: user.question2,
+                question3: user.question3,
+                question4: user.question4,
+                question5: user.question5,
+                question6: user.question6,
+                question7: user.question7,
+                question8: user.question8,
+                question9: selectedOption ?? '',
+            };
+            // Pass userData as a prop when navigating to the QuestionPage
+            router.push({
+                pathname: path,
+                query: { userData: JSON.stringify(newUser) }
+            });
+            //console.log(newUser);
         }
     }, [timeRemaining]);
 
@@ -65,7 +110,7 @@ function QuestionPage4() {
                 </div>
                 <br />
                 {/* Opciones */}
-                {audioEnded && <OptionsQ4 />}
+                {audioEnded && <OptionsQ4 onOptionSelected={handleOptionSelected} />}
             </div>
         </div>
     )

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import classes from '../../styles/extra.module.css'
 
-function OptionsQ4() {
+function OptionsQ4({ onOptionSelected }) {
 
     const [selectedOption, setSelectedOption] = useState('');
     const router = useRouter();
@@ -11,6 +11,8 @@ function OptionsQ4() {
     const handleOptionChange = (event) => {
         //guarda el valor seleccionado en 'selectedOption'
         setSelectedOption(event.target.value);
+        
+        onOptionSelected(event.target.value);
     };
 
     //recupero datos de anterior página (userForm)

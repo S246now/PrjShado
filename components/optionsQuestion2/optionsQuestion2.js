@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import classes from '../../styles/extra.module.css'
 
-function OptionsQ2() {
+function OptionsQ2({ onOptionSelected }) {
 
     const [selectedOption, setSelectedOption] = useState('');
     const router = useRouter();
@@ -11,6 +11,8 @@ function OptionsQ2() {
     const handleOptionChange = (event) => {
         //guarda el valor seleccionado en 'selectedOption'
         setSelectedOption(event.target.value);
+
+        onOptionSelected(event.target.value);
     };
 
     //recupero datos de anterior página (userForm)
@@ -20,10 +22,10 @@ function OptionsQ2() {
             const user = JSON.parse(userData);
             // Continuar con la lógica después de analizar los datos exitosamente
 
-        event.preventDefault();
+            event.preventDefault();
 
-        const newUser = {
-            age: user.age,
+            const newUser = {
+                age: user.age,
                 student: user.student,
                 carreer: user.carreer,
                 question1: user.question1,
@@ -35,21 +37,21 @@ function OptionsQ2() {
                 question7: selectedOption ?? '',
             };
 
-        // Pass userData as a prop when navigating to the QuestionPage
-        const path = '/questions/factor2/question3';
-        router.push({
-            pathname: path,
-            query: { userData: JSON.stringify(newUser) }
-        });
-        console.log(newUser);
-    } catch (error) {
-        console.error('Error al analizar los datos del usuario:', error);
-        // Redireccionar a otra página en caso de error
-        router.push('/error');
+            // Pass userData as a prop when navigating to the QuestionPage
+            const path = '/questions/factor2/question3';
+            router.push({
+                pathname: path,
+                query: { userData: JSON.stringify(newUser) }
+            });
+            console.log(newUser);
+        } catch (error) {
+            console.error('Error al analizar los datos del usuario:', error);
+            // Redireccionar a otra página en caso de error
+            router.push('/error');
+        }
     }
-}
 
-    return(
+    return (
         <div>
             {/* Opciones */}
             <br />

@@ -7,6 +7,8 @@ function QuestionPage4() {
     const [selectedOption, setSelectedOption] = useState('');
     const [timeRemaining, setTimeRemaining] = useState(60); // Tiempo restante en segundos
     const router = useRouter();
+    //recupero datos de anterior página (userForm)
+    const { userData } = router.query;
 
     const handleOptionChange = (event) => {
         const value = event.target.value;
@@ -31,12 +33,39 @@ function QuestionPage4() {
         if (timeRemaining === 0) {
             // Redireccionar a /questions/question2 si han pasado 30 segundos
             const path = "/questions/factor3/question5";
-            router.push(path);
+            //router.push(path);
+            //
+            const user = JSON.parse(userData);
+            const newUser = {
+                age: user.age,
+                student: user.student, 
+                carreer: user.carreer,
+                question1: user.question1,
+                question2: user.question2,
+                question3: user.question3,
+                question4: user.question4,
+                question5: user.question5,
+                question6: user.question6,
+                question7: user.question7,
+                question8: user.question8,
+                question9: user.question9,
+                question10: user.question10,
+                question11: user.question11,
+                question12: user.question12,
+                question13: user.question13,
+                question14: selectedOption ?? '',
+            };
+            // Pass userData as a prop when navigating to the QuestionPage
+            router.push({
+                pathname: path,
+                query: { userData: JSON.stringify(newUser) }
+            });
+            //console.log(newUser);
         }
     }, [timeRemaining]);
 
-    //recupero datos de anterior página (userForm)
-    const { userData } = router.query;
+
+    
     function sendDataAndContinue(event) {
         event.preventDefault();
 
